@@ -1,0 +1,36 @@
+#map-chart {
+    width: 100%;
+    height: 100%;
+    
+  }
+
+.county {
+    fill: lightgrey;
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
+.county-positive {
+    fill: rgb(218, 209, 209);
+}
+
+.county-hover {
+    opacity: 1;
+}
+
+.bubble {
+    fill: brown;
+    fill-opacity: .5;
+    stroke: #fff;
+    stroke-width: .5px;
+  }
+
+.tooltip {
+    line-height: 1;
+    padding: 6px;
+    background: rgba(0, 0, 0);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
