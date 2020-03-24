@@ -13,7 +13,7 @@ var projection = d3.geoMercator()
 
 // Date parser and formatter
 var parseDate = d3.timeParse("%m/%d/%y");
-var formatTime = d3.timeFormat("%B %d, %Y");
+var formatTime = d3.timeFormat("%Y-%m-%d");
 
 // Define mapSvg canvas
 var mapSvg = d3
@@ -112,10 +112,10 @@ d3.json("data/oregon-counties.json").then(function(topodata) {
 
             div.transition()		
                 .duration(250)		
-                .style("opacity", 0);	
-            div .html('')
-                .style("left", "0px")
-                .style("top", "0px");
+                .style("opacity", 0)	
+            div.html('')
+                .style("left", "-200px")
+                .style("top", "-200px");
         }
 
         // Draw the map
