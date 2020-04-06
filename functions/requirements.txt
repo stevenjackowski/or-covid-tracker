@@ -1,0 +1,7 @@
+azure-functions
+azure-storage-blob
+requests
+lxml
+pandas
+beautifulsoup4
+html5lib
