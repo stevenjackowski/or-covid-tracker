@@ -1,7 +1,11 @@
 #map-chart {
     width: 100%;
+    height: 100%; 
+  }
+
+#area-chart {
+    max-width: 100%;
     height: 100%;
-    
   }
 
 .county {
@@ -11,15 +15,16 @@
 }
 
 .county-positive {
-    fill: rgb(218, 209, 209);
+    fill: rgb(201, 190, 182);
 }
 
 .county-hover {
-    opacity: 1;
+    stroke-width: 1px;
+    stroke: grey;
 }
 
 .bubble {
-    fill: brown;
+    fill: chocolate;
     fill-opacity: .5;
     stroke: #fff;
     stroke-width: .5px;
@@ -34,3 +39,36 @@
     font-size: 12px;
   }
 
+/* .area {
+  fill-opacity: .75;
+} */
+  
+.colored-dot {
+  height: .75rem;
+  width: .75rem;
+  background-color: brown;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.rect {
+  fill-opacity: .8;
+}
+
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+.axis line { 
+  stroke-opacity: 0;
+}
+
+.axis path { 
+  stroke-opacity: 0;
+}

@@ -24,7 +24,7 @@ def main(mytimer: func.TimerRequest) -> None:
     logging.info('Python timer trigger function ran at %s', utc_timestamp)
 
     # Retrieve the existing set of date (used to check for the last pulled date and overwrite the file)
-    storage_account_string = os.environ["AzureWebJobsStorage"]
+    storage_account_string = os.environ["DashboardStorageAccount"]
     blob_service_client = BlobServiceClient.from_connection_string(storage_account_string)
     container_client = blob_service_client.get_container_client("$web")
     blob_client = container_client.get_blob_client(BLOB_NAME)
