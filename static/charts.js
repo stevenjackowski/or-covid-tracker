@@ -279,10 +279,10 @@ d3.json("data/oregon-counties.json").then(function(topodata) {
         }
 
         // Bind the function to the radio buttons
-        $("#positivesButton").click(function () {
+        $("#positivesButton").on("click touch", function () {
             updateMap("positives");
         })
-        $("#deathsButton").click(function () {
+        $("#deathsButton").on("click touch", function () {
             updateMap("deaths");
         })
 
