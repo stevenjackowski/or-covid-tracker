@@ -14,8 +14,12 @@
     stroke-width: 1px;
 }
 
-.county-positive {
+.county-positives {
     fill: rgb(201, 190, 182);
+}
+
+.county-deaths {
+    fill: rgb(201, 177, 177)
 }
 
 .county-hover {
@@ -24,11 +28,18 @@
 }
 
 .bubble {
-    fill: chocolate;
     fill-opacity: .5;
     stroke: #fff;
     stroke-width: .5px;
   }
+
+.bubble-positives {
+  fill: chocolate;
+}
+
+.bubble-deaths {
+  fill: brown;
+}
 
 .tooltip {
     line-height: 1;

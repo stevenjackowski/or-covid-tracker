@@ -16,7 +16,7 @@
     <title>OR SARS-CoV-2 Tracker</title>
   </head>
   <body>
-    <main class="container">
+    <main class="container" style="max-width: 960px;">
         <!-- <h2 class="mt-md-4">Oregon SARS-CoV-2 Tracker</h1>
         <p class="lead">This dashboard tracks SARS-CoV-2 (Novel Coronavirus) testing in the State of Oregon. The dashboard is updated on a daily basis using data from OHA's <a href="https://govstatus.egov.com/OR-OHA-COVID-19">COVID-19 web page</a>. Red bubbles on the chart below represent amount of positive coronavirus cases identified in a specific county.</p>
         <div class="row">
@@ -31,13 +31,23 @@
             </div>
         </div> -->
         <div class="row justify-content-center mt-md-4" >
-            <div class="col-8 border-bottom my-2">
+            <div class="col-10 border-bottom my-2">
                 <h2 class="mt-md-4">Oregon SARS-CoV-2 Tracker</h1>
                 <p class="lead">This dashboard tracks SARS-CoV-2 (Novel Coronavirus) testing in the State of Oregon. The dashboard is updated on a daily basis using data from OHA's <a href="https://govstatus.egov.com/OR-OHA-COVID-19">COVID-19 web page</a>.</p>            </div>
-        </div>
+            </div>
         <div class="row justify-content-center mt-md-2" >
-            <div class="col-8">
-                <p>Oregon has completed a total of <span style="border-bottom: 1px dotted;" id="num-total"></span> tests to-date, with <span style="border-bottom: 1px dotted;"><span class="colored-dot" style="background-color: chocolate"></span> <span id="num-positive"></span> Positive</span> results, <span style="border-bottom: 1px dotted; white-space: nowrap"><span class="colored-dot" style="background-color: darkgrey"></span> <span id="num-negative"></span> Negative</span> results, and <span style="border-bottom: 1px dotted;"><span class="colored-dot" style="background-color: brown"></span> <span id="num-death"></span> Deaths</span> reported. The map below displays test counts for individual counties, with larger bubbles indicating more positive results.</p>
+            <div class="col-10">
+                <p>Oregon has completed a total of <span style="border-bottom: 1px dotted;" id="num-total"></span> tests to-date, with <span style="border-bottom: 1px dotted;"><span class="colored-dot" style="background-color: chocolate"></span> <span id="num-positive"></span> Positive</span> results, <span style="border-bottom: 1px dotted; white-space: nowrap"><span class="colored-dot" style="background-color: darkgrey"></span> <span id="num-negative"></span> Negative</span> results, and <span style="border-bottom: 1px dotted;"><span class="colored-dot" style="background-color: brown"></span> <span id="num-death"></span> Deaths</span> reported. The map below displays counts for individual counties, with larger bubbles indicating more reported results.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-md-2">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light active">
+                <input type="radio" name="mapSelection" id="positivesButton" checked> Positives
+                </label>
+                <label class="btn btn-light">
+                <input type="radio" name="mapSelection" id="deathsButton"> Deaths
+                </label>
             </div>
         </div>
         <div class="row justify-content-center mt-md-2">
@@ -46,18 +56,18 @@
             </div>
         </div>
         <div class="row justify-content-center mt-md-4" >
-            <div class="col-8" id=area-chart-container> 
+            <div class="col-10" id=area-chart-container> 
                 <h5>Results Over Time</h5>
                 The below charts display daily tallies for both positive tests and newly reported deaths.
             </div>
         </div>
-        <div class="row justify-content-center" >
-            <div class="col-6" id=positivebar-chart-container>
+        <div class="row justify-content-center mt-md-4" >
+            <div class="col-10" id=positivebar-chart-container style="max-width: 480px">
                 <svg id="positivebar-chart"></svg>
             </div>
         </div>
         <div class="row justify-content-center" >
-            <div class="col-6" id=deathbar-chart-container>
+            <div class="col-10" id=deathbar-chart-container style="max-width: 480px">
                 <svg id="deathbar-chart"></svg>
             </div>
         </div>

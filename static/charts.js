@@ -1,6 +1,6 @@
 
 // Define margins
-var margin = { top: 20, right: 30, bottom: 30, left: 30 },
+var margin = { top: 25, right: 30, bottom: 20, left: 30 },
 width =
     parseInt(d3.select("#map-chart-container").style("width")) - margin.left - margin.right,
 height = width / 1.618;
@@ -49,13 +49,13 @@ var mapSvg = d3
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Add a chart title to the map
-mapSvg.append("text")
-    .attr("x", (width / 2))             
-    .attr("y", 0)
-    .attr("text-anchor", "middle")  
-    .style("font-size", ".8rem") 
-    .style("font-weight", "550")
-    .text("Confirmed cases by Oregon county");
+// mapSvg.append("text")
+//     .attr("x", (width / 2))             
+//     .attr("y", 0)
+//     .attr("text-anchor", "middle")  
+//     .style("font-size", ".8rem") 
+//     .style("font-weight", "550")
+//     .text("Confirmed cases by Oregon county");
 
 // Create the SVG group for the Cumulative Totals Area Chart
 // var areaSvg = d3
@@ -246,14 +246,45 @@ d3.json("data/oregon-counties.json").then(function(topodata) {
             .data(counties)
             .enter().append("circle")
             .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-            .attr("r", function(d) { return radius(d.properties.counts[0].positives)})
+            .attr("r", function(d) { return radius(d.properties.counts[0]["positives"])})
+            .classed("bubble-positives", true)
             .on("mousemove", tooltipMouseOver)					
             .on("mouseout", tooltipMouseOut);
 
         // Shade positive counties
         mapSvg.selectAll(".county")
             .filter(d => d.properties.counts[0].positives > 0 )
-            .classed("county-positive", true);
+            .classed("county-positives", true);
+
+        // Function to update the map based on radio button selection
+        function updateMap(metric) {
+            mapSvg.selectAll("circle").transition()
+                .attr("r", function(d) { return radius(d.properties.counts[0][metric])})
+                // Wait for transition to end before changing colors
+                .duration(350)
+                .on("end", function() {
+                mapSvg.selectAll("circle")
+                    .classed("bubble-positives", false)
+                    .classed("bubble-deaths", false)
+                    // Only enable the class for the chosen metric (control color)
+                    .classed("bubble-" + metric, true);
+    
+                // Unshade the counties
+                mapSvg.selectAll(".county")
+                    .classed("county-positives", false)
+                    .classed("county-deaths", false)
+                    .filter(d => d.properties.counts[0][metric] > 0 )
+                    .classed("county-" + metric, true);
+                })
+        }
+
+        // Bind the function to the radio buttons
+        $("#positivesButton").click(function () {
+            updateMap("positives");
+        })
+        $("#deathsButton").click(function () {
+            updateMap("deaths");
+        })
 
         // Calculate Daily Totals for Area Chart
         var dailyTotals = d3.nest()
@@ -298,7 +329,7 @@ d3.json("data/oregon-counties.json").then(function(topodata) {
         // Create the Area Chart 
         // var areaSeries = d3.stack().keys(keys)(dailyTotals);
         var testBarSeries = d3.stack().keys(testBarKeys)(dailyTotals);
-        var barWidth = Math.floor(width / dailyTotals.length)*.45;
+        var barWidth = Math.floor(width / dailyTotals.length)*.5;
 
         x = d3.scaleUtc()
             .domain(d3.extent(dailyTotals, function(d) {
